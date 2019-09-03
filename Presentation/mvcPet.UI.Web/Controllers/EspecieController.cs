@@ -78,13 +78,14 @@ namespace mvcPet.UI.Web.Controllers
 
         // POST: Especie/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Especie model)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                // TODO: Add insert logic here
+                IEspecieService especieService = new EspecieService();
+                especieService.Eliminar(model);
+                return RedirectToAction("Index");          
             }
             catch
             {

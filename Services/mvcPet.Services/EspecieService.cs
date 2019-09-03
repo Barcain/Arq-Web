@@ -22,5 +22,12 @@ namespace mvcPet.Services
             var bc = new EspecieComponent();
             return bc.ListarTodos();
         }
+
+
+        public void Eliminar(Especie model)
+        {
+            var bc = new EspecieComponent();
+            bc.Eliminar(model.Id);
+        }
     }
 }

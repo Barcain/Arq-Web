@@ -24,5 +24,14 @@ namespace mvcPet.Business
             return result;
 
         }
+
+        public void Eliminar(int id)
+        {          
+            var especieDAC = new EspecieDAC();
+            especieDAC.Delete(id);
+           
+        }
+
+
     }
 }

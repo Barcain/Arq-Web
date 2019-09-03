@@ -14,5 +14,6 @@ namespace mvcPet.Services.Contracts
 
         [OperationContract]
         List<Especie> ListarTodos();
+        void Eliminar(Especie model);
     }
 }
