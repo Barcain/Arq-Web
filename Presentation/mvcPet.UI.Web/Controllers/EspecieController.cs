@@ -51,12 +51,14 @@ namespace mvcPet.UI.Web.Controllers
         // GET: Especie/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            IEspecieService especieService = new EspecieService();
+            var especie = especieService.Find(id);
+            return View(especie);
         }
 
         // POST: Especie/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Especie model)
+        public ActionResult Edit(Especie model)
         {
             try
             {
@@ -74,7 +76,9 @@ namespace mvcPet.UI.Web.Controllers
         // GET: Especie/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            IEspecieService especieService = new EspecieService();
+            var especie = especieService.Find(id);
+            return View(especie);
         }
 
         // POST: Especie/Delete/5

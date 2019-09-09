@@ -34,5 +34,10 @@ namespace mvcPet.Services
             var bc = new EspecieComponent();
             bc.Editar(model);
         }
+
+        public Especie Find(int id)        {
+            var bc = new EspecieComponent();
+            return bc.FindBy(id);
+        }
     }
 }

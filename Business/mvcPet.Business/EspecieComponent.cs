@@ -39,5 +39,12 @@ namespace mvcPet.Business
             especieDAC.Update(model);
   
         }
+
+        public Especie FindBy(int id)
+        {
+            var especieDAC = new EspecieDAC();
+            return especieDAC.ReadBy(id);
+
+        }
     }
 }
