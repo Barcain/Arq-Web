@@ -32,6 +32,12 @@ namespace mvcPet.Business
            
         }
 
-
+        public void Editar(Especie model)
+        {
+           
+            var especieDAC = new EspecieDAC();
+            especieDAC.Update(model);
+  
+        }
     }
 }

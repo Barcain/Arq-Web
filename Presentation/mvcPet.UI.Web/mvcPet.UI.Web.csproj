@@ -254,6 +254,7 @@
     <Content Include="Views\Especie\Index.cshtml" />
     <Content Include="Views\Especie\Create.cshtml" />
     <Content Include="Views\Especie\Delete.cshtml" />
+    <Content Include="Views\Especie\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -56,12 +56,13 @@ namespace mvcPet.UI.Web.Controllers
 
         // POST: Especie/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Especie model)
         {
             try
             {
                 // TODO: Add update logic here
-
+                IEspecieService especieService = new EspecieService();
+                especieService.Editar(model);
                 return RedirectToAction("Index");
             }
             catch
