@@ -16,11 +16,16 @@ namespace mvcPet.Services.Contracts
 
             [OperationContract]
             List<Servicios> ListarTodos();
+
+            [OperationContract]
             void Eliminar(Servicios model);
+
+            [OperationContract]
             void Editar(Servicios model);
 
+            [OperationContract]
+            Servicios Find(int id);
+    }
 
-        }
 
-    
 }

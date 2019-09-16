@@ -1,0 +1,37 @@
+﻿@model mvcPet.Entities.Sala
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 class="text-center">Borrar Sala</h2>
+<br />
+<div>
+    <dl class="dl-horizontal col-md-offset-4 col-md-8">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoSala)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoSala)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color col-md-offset-5 col-md-7">
+            <input type="submit" value="Borrar" class="btn btn-danger" />
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

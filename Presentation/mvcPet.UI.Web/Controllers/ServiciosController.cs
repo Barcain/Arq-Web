@@ -1,4 +1,5 @@
-﻿using mvcPet.Services;
+﻿using mvcPet.Entities;
+using mvcPet.Services;
 using mvcPet.Services.Contracts;
 using System;
 using System.Collections.Generic;
@@ -32,12 +33,13 @@ namespace mvcPet.UI.Web.Controllers
 
         // POST: Servicios/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Servicios model)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                IServiciosService serviciosService = new ServiciosService();
+                serviciosService.Agregar(model);
                 return RedirectToAction("Index");
             }
             catch
@@ -49,17 +51,20 @@ namespace mvcPet.UI.Web.Controllers
         // GET: Servicios/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            IServiciosService servicioService = new ServiciosService();
+            var servicio = servicioService.Find(id);
+            return View(servicio);
         }
 
         // POST: Servicios/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Servicios model)
         {
             try
             {
                 // TODO: Add update logic here
-
+                IServiciosService servicioService = new ServiciosService();
+                servicioService.Editar(model);
                 return RedirectToAction("Index");
             }
             catch
@@ -71,17 +76,20 @@ namespace mvcPet.UI.Web.Controllers
         // GET: Servicios/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            IServiciosService servicioService = new ServiciosService();
+            var servicio = servicioService.Find(id);
+            return View(servicio);
         }
 
         // POST: Servicios/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Servicios model)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                // TODO: Add insert logic here
+                IServiciosService servicioService = new ServiciosService();
+                servicioService.Eliminar(model);
                 return RedirectToAction("Index");
             }
             catch

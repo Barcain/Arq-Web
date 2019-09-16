@@ -14,7 +14,7 @@ namespace mvcPet.Data
     {
         public Servicios Create(Servicios servicios)
         {
-            const string SQL_STATEMENT = "INSERT INTO Servicios ([Nombre]) VALUES(@Nombre); SELECT SCOPE_IDENTITY();";
+            const string SQL_STATEMENT = "INSERT INTO TipoServicio ([Nombre]) VALUES(@Nombre); SELECT SCOPE_IDENTITY();";
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
@@ -47,7 +47,7 @@ namespace mvcPet.Data
 
         public Servicios ReadBy(int id)
         {
-            const string SQL_STATEMENT = "SELECT [Id], [Nombre] FROM Servicios WHERE [Id]=@Id ";
+            const string SQL_STATEMENT = "SELECT [Id], [Nombre] FROM TipoServicio WHERE [Id]=@Id ";
             Servicios servicios = null;
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -67,7 +67,7 @@ namespace mvcPet.Data
 
         public void Update(Servicios servicios)
         {
-            const string SQL_STATEMENT = "UPDATE Servicios SET [Nombre]= @Nombre WHERE [Id]= @Id ";
+            const string SQL_STATEMENT = "UPDATE TipoServicio SET [Nombre]= @Nombre WHERE [Id]= @Id ";
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
@@ -80,7 +80,7 @@ namespace mvcPet.Data
 
         public void Delete(int id)
         {
-            const string SQL_STATEMENT = "DELETE Servicios WHERE [Id]= @Id ";
+            const string SQL_STATEMENT = "DELETE TipoServicio WHERE [Id]= @Id ";
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {

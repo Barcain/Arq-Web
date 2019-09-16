@@ -168,9 +168,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\EspecieController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MedicoController.cs" />
+    <Compile Include="Controllers\PacienteController.cs" />
+    <Compile Include="Controllers\SalaController.cs" />
     <Compile Include="Controllers\ServiciosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -258,6 +262,20 @@
     <Content Include="Views\Especie\Edit.cshtml" />
     <Content Include="Views\Servicios\Index.cshtml" />
     <Content Include="Views\Shared\_MenuPartial.cshtml" />
+    <Content Include="Views\Servicios\Delete.cshtml" />
+    <Content Include="Views\Servicios\Edit.cshtml" />
+    <Content Include="Views\Servicios\Create.cshtml" />
+    <Content Include="Views\Sala\Index.cshtml" />
+    <Content Include="Views\Sala\Create.cshtml" />
+    <Content Include="Views\Sala\Edit.cshtml" />
+    <Content Include="Views\Sala\Delete.cshtml" />
+    <Content Include="Views\Medico\Index.cshtml" />
+    <Content Include="Views\Medico\Create.cshtml" />
+    <Content Include="Views\Medico\Edit.cshtml" />
+    <Content Include="Views\Medico\Delete.cshtml" />
+    <Content Include="Views\Paciente\Index.cshtml" />
+    <Content Include="Views\Cliente\Index.cshtml" />
+    <Content Include="Views\Cliente\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

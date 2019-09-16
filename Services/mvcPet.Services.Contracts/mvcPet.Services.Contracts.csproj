@@ -41,6 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IEspecieService.cs" />
+    <Compile Include="IClienteService.cs" />
+    <Compile Include="IMedicoService.cs" />
+    <Compile Include="IPacienteService.cs" />
+    <Compile Include="ISalaService.cs" />
     <Compile Include="IServiciosService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

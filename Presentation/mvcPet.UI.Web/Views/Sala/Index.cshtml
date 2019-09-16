@@ -1,0 +1,46 @@
+﻿@model IEnumerable<mvcPet.Entities.Sala>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Salas</h2>
+
+<p>
+    @Html.ActionLink("Nueva Sala", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoSala)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoSala)
+            </td>
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Acciones <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Editar", "Edit", new { id = item.Id })</li>
+                        <li>@Html.ActionLink("Borrar", "Delete", new { id = item.Id })</li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>

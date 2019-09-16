@@ -39,5 +39,12 @@ namespace mvcPet.Business
             serviciosDAC.Update(model);
 
         }
+
+        public Servicios FindBy(int id)
+        {
+            var servicioDAC = new ServiciosDAC();
+            return servicioDAC.ReadBy(id);
+
+        }
     }
 }
