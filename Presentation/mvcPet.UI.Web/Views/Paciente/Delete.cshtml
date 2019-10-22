@@ -1,0 +1,61 @@
+﻿@model mvcPet.Entities.Paciente
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 class="text-center">Borrar Paciente</h2>
+<br />
+<div>
+    <dl class="dl-horizontal col-md-offset-4 col-md-8">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaNacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaNacimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ENombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ENombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observacion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color col-md-offset-5 col-md-7">
+            <input type="submit" value="Borrar" class="btn btn-danger" />
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

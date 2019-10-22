@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -20,19 +21,12 @@
                     @Html.ActionLink("Veterinaria", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Turnos", "Index", "Turno")</li>
-                        <li>@Html.ActionLink("Clientes", "Index", "cliente")</li>
-                        <li>@Html.ActionLink("Pacientes", "Index", "Paciente")</li>
-                        <li>@Html.ActionLink("Médicos", "Index", "Medico")</li>
-                        <li>@Html.ActionLink("Salas", "Index", "Sala")</li>
-                        <li>@Html.ActionLink("Especies", "Index", "Especie")</li>
-                        <li>@Html.ActionLink("Servicios", "Index", "Servicios")</li>
+                    @Html.Partial("_MenuPartial")
+                    <ul class="nav navbar-nav">                       
                         <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
                         <li>@Html.ActionLink("Información", "About", "Home")</li>                                               
                     </ul>
-                    @Html.Partial("_MenuPartial")
-                    @Html.Partial("_LoginPartial")
+                   @Html.Partial("_LoginPartial")
                 </div>                                          
             </div>
         </div>

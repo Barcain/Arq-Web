@@ -26,6 +26,15 @@ namespace mvcPet.Business
 
         }
 
+        public List<ListaClientes> CrearListaClientes()
+        {
+            List<ListaClientes> result = default(List<ListaClientes>);
+            var clienteDAC = new ClienteDAC();
+            result = clienteDAC.CreateListClient();
+            return result;
+
+        }
+
         public void Eliminar(int id)
         {
             var clienteDAC = new ClienteDAC();

@@ -96,6 +96,37 @@ namespace mvcPet.Data
             especie.Nombre = GetDataValue<string>(dr, "Nombre");
             return especie;
         }
+
+        //  Devuelve una lista de especies para ser utilizada en una lista desplegable.
+        public List<ListaEspecies> CreateListSpecie()
+        {
+            const string SQL_STATEMENT_2 = "SELECT [Id], [Nombre] FROM Especie";
+
+            List<ListaEspecies> lista = new List<ListaEspecies>();
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT_2))
+            {
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    while (dr.Read())
+                    {
+                        ListaEspecies especie = LoadEspecieList(dr);
+                        lista.Add(especie);
+                    }
+                }
+            }
+            return lista;
+        }
+
+        public ListaEspecies LoadEspecieList(IDataReader dr)
+        {
+            ListaEspecies especie = new ListaEspecies();
+            especie.Id = GetDataValue<int>(dr, "Id");
+            especie.ENombre = GetDataValue<string>(dr, "Nombre");
+
+            return especie;
+        }
+
     }
 }
 

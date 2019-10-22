@@ -1,4 +1,5 @@
-﻿using mvcPet.Services;
+﻿using mvcPet.Entities;
+using mvcPet.Services;
 using mvcPet.Services.Contracts;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace mvcPet.UI.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class PacienteController : Controller
     {
         // GET: Paciente
@@ -27,17 +29,24 @@ namespace mvcPet.UI.Web.Controllers
         // GET: Paciente/Create
         public ActionResult Create()
         {
-            return View();
+            IEspecieService especieService = new EspecieService();
+            IClienteService clienteService = new ClienteService();
+            
+            ViewBag.listaEsp = especieService.CrearListaEspecies();
+            ViewBag.listaCli = clienteService.CrearListaClientes();
+
+            return View();            
         }
 
         // POST: Paciente/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Paciente model)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                IPacienteService pacienteService = new PacienteService();
+                pacienteService.Agregar(model);
                 return RedirectToAction("Index");
             }
             catch
@@ -48,18 +57,28 @@ namespace mvcPet.UI.Web.Controllers
 
         // GET: Paciente/Edit/5
         public ActionResult Edit(int id)
-        {
-            return View();
+        {           
+            IPacienteService pacienteService = new PacienteService();
+            var paciente = pacienteService.Find(id);
+            
+            IEspecieService especieService = new EspecieService();
+            IClienteService clienteService = new ClienteService();
+                       
+            ViewBag.listaEsp = especieService.CrearListaEspecies();
+            ViewBag.listaCli = clienteService.CrearListaClientes();
+           
+            return View(paciente);
         }
 
         // POST: Paciente/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Paciente model)
         {
             try
             {
                 // TODO: Add update logic here
-
+                IPacienteService pacienteService = new PacienteService();
+                pacienteService.Editar(model);
                 return RedirectToAction("Index");
             }
             catch
@@ -71,17 +90,20 @@ namespace mvcPet.UI.Web.Controllers
         // GET: Paciente/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            IPacienteService pacienteService = new PacienteService();
+            var paciente = pacienteService.Find(id);
+            return View(paciente);
         }
 
         // POST: Paciente/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Paciente model)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                // TODO: Add insert logic here
+                IPacienteService pacienteService = new PacienteService();
+                pacienteService.Eliminar(model);
                 return RedirectToAction("Index");
             }
             catch

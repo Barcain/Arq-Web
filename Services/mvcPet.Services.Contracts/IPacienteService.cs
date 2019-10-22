@@ -23,6 +23,9 @@ namespace mvcPet.Services.Contracts
 
             [OperationContract]
             Paciente Find(int id);
+
+            [OperationContract]
+            List<ListaPacientes> CrearListaPacientes();
     }
 
 

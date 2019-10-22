@@ -16,7 +16,10 @@ namespace mvcPet.Entities
         [DisplayName("Cliente Id")]
         public int ClienteId { get; set; }
 
-        [DisplayName("Nombre")]
+        [DisplayName("Cliente")]
+        public string Cliente { get; set; }
+
+        [DisplayName("Paciente")]
         public string Nombre { get; set; }
 
         [DisplayName("Fecha Nacimiento")]
@@ -25,8 +28,11 @@ namespace mvcPet.Entities
         [DisplayName("Especie Id")]
         public int EspecieId { get; set; }
 
+        [DisplayName("Especie")]
+        public string ENombre { get; set; }
+
         [DisplayName("Observación")]
         public string Observacion { get; set; }
-        
+
     }
 }

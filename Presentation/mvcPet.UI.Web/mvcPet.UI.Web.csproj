@@ -49,6 +49,22 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StructureMap, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\structuremap.3.1.1.134\lib\net40\StructureMap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StructureMap.Net4, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\structuremap.3.1.1.134\lib\net40\StructureMap.Net4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StructureMap.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\structuremap.web.3.1.0.133\lib\net40\StructureMap.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -101,6 +117,10 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WebActivatorEx.2.0.5\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -167,7 +187,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CitaController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\EspecieController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -176,6 +198,11 @@
     <Compile Include="Controllers\PacienteController.cs" />
     <Compile Include="Controllers\SalaController.cs" />
     <Compile Include="Controllers\ServiciosController.cs" />
+    <Compile Include="DependencyResolution\ControllerConvention.cs" />
+    <Compile Include="DependencyResolution\DefaultRegistry.cs" />
+    <Compile Include="DependencyResolution\IoC.cs" />
+    <Compile Include="DependencyResolution\StructureMapDependencyScope.cs" />
+    <Compile Include="DependencyResolution\StructureMapScopeModule.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,6 +219,13 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\logo.jpg" />
+    <Content Include="Content\Images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Content\jquery-ui.structure.css" />
+    <Content Include="Content\jquery-ui.structure.min.css" />
+    <Content Include="Content\jquery-ui.theme.css" />
+    <Content Include="Content\jquery-ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -209,7 +243,9 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -276,6 +312,13 @@
     <Content Include="Views\Paciente\Index.cshtml" />
     <Content Include="Views\Cliente\Index.cshtml" />
     <Content Include="Views\Cliente\Create.cshtml" />
+    <Content Include="Views\Cliente\Edit.cshtml" />
+    <Content Include="Views\Cliente\Delete.cshtml" />
+    <Content Include="Views\Paciente\Create.cshtml" />
+    <Content Include="Views\Paciente\Edit.cshtml" />
+    <Content Include="Views\Cita\Index.cshtml" />
+    <Content Include="Views\Cita\ListaTurnos.cshtml" />
+    <Content Include="Views\Paciente\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

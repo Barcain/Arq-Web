@@ -13,7 +13,7 @@ namespace mvcPet.Services
     {
         public Medico Agregar(Medico medico)
         {
-            var bc = new MedicoComponent();
+            var bc = new MedicoComponent();            
             return bc.Agregar(medico);
         }
 

@@ -14,7 +14,18 @@
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
         </th>
-        <th></th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Valor)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDesde)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FechaHasta)
+        </th>
     </tr>
 
 @foreach (var item in Model)
@@ -23,6 +34,19 @@
         <td>
             @Html.DisplayFor(modelItem => item.Nombre)
         </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Valor)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaDesde)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaHasta)
+        </td>
+
         <td>
             <div class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

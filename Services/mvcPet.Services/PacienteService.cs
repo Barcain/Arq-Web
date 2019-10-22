@@ -26,7 +26,7 @@ namespace mvcPet.Services
 
         public void Eliminar(Paciente model)
         {
-            var bc = new SalaComponent();
+            var bc = new PacienteComponent();
             bc.Eliminar(model.Id);
         }
 
@@ -40,6 +40,12 @@ namespace mvcPet.Services
         {
             var bc = new PacienteComponent();
             return bc.FindBy(id);
+        }
+
+        public List<ListaPacientes> CrearListaPacientes()
+        {
+            var bc = new PacienteComponent();
+            return bc.CrearListaPacientes();
         }
     }
 }

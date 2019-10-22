@@ -1,0 +1,69 @@
+﻿@model mvcPet.Entities.Paciente
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2 class="text-center">Editar Paciente</h2>
+<hr />
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FechaNacimiento, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FechaNacimiento, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
+                    @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ENombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.EspecieId, new SelectList(ViewBag.listaEsp, "Id", "ENombre"), "Elija Especie", htmlAttributes: new { @class = "form-control", id = "Especies" })
+                    @Html.ValidationMessageFor(model => model.EspecieId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Cliente, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.ClienteId, new SelectList(ViewBag.listaCli, "Id", "NApellido"), "Elija Cliente", htmlAttributes: new { @class = "form-control", id = "Clientes" })
+                    @Html.ValidationMessageFor(model => model.ClienteId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Observacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Observacion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Observacion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-5 col-md-7">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                    @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")    
+        
+    }

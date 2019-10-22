@@ -1,0 +1,50 @@
+﻿@model mvcPet.Entities.FechaTurno
+@{
+    ViewBag.Title = "Index";
+}
+
+<head>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery-ui")
+
+</head>
+
+<body>
+
+<h2 class="text-center">Turnos</h2>
+
+<section>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal text-center">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <h4>Seleccione una Fecha</h4>
+                <div>
+                    @Html.EditorFor(model => model.FechaConsulta, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
+                    @Html.ValidationMessageFor(model => model.FechaConsulta, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <input type="submit" value="Buscar" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }   
+</section>
+
+<aside>
+  
+</aside>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</body>
+  
+
+

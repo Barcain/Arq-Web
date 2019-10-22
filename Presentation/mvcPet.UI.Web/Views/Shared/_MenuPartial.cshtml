@@ -1,9 +1,15 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Especie ", "Index", "Especie")
-        </li>
+    <ul class="nav navbar-nav">
+        
+            <li>@Html.ActionLink("Turnos", "Index", "Cita")</li>
+            <li>@Html.ActionLink("Clientes", "Index", "Cliente")</li>
+            <li>@Html.ActionLink("Pacientes", "Index", "Paciente")</li>
+            <li>@Html.ActionLink("Médicos", "Index", "Medico")</li>
+            <li>@Html.ActionLink("Salas", "Index", "Sala")</li>
+            <li>@Html.ActionLink("Especies", "Index", "Especie")</li>
+            <li>@Html.ActionLink("Servicios", "Index", "Servicios")</li>
+        
     </ul>
 }

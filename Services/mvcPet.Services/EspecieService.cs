@@ -23,6 +23,11 @@ namespace mvcPet.Services
             return bc.ListarTodos();
         }
 
+        public List<ListaEspecies> CrearListaEspecies()
+        {
+            var bc = new EspecieComponent();
+            return bc.CrearListaEspecies();
+        }
 
         public void Eliminar(Especie model)
         {

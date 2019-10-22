@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace mvcPet.UI.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class EspecieController : Controller
     {
         // GET: Especie

@@ -16,21 +16,23 @@ namespace mvcPet.Data
         {
             const string SQL_STATEMENT = "INSERT INTO Medico ([TipoMatricula], [NumeroMatricula], [Apellido], [Nombre], [Especialidad], [FechaNacimiento], [Email], [Telefono]) VALUES(@TipoMatricula, @NumeroMatricula, @Apellido, @Nombre, @Especialidad, @FechaNacimiento, @Email, @Telefono); SELECT SCOPE_IDENTITY();";
 
-            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);            
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
-                medico.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
+                
                 db.AddInParameter(cmd, "@TipoMatricula", DbType.AnsiString, medico.TipoMatricula);
                 db.AddInParameter(cmd, "@NumeroMatricula", DbType.Int32, medico.NumeroMatricula);
                 db.AddInParameter(cmd, "@Apellido", DbType.AnsiString, medico.Apellido);
                 db.AddInParameter(cmd, "@Nombre", DbType.AnsiString, medico.Nombre);
                 db.AddInParameter(cmd, "@Especialidad", DbType.AnsiString, medico.Especialidad);
                 
-                db.AddInParameter(cmd, "@FechaNacimiento", DbType.DateTime, medico.FechaNacimiento.Date); // Con .Date me quedo solamente con la fecha sil la hora.
+                db.AddInParameter(cmd, "@FechaNacimiento", DbType.Date, medico.FechaNacimiento.Date.ToString("dd-MM-yyyy"));
                 db.AddInParameter(cmd, "@Email", DbType.AnsiString, medico.Email);
                 db.AddInParameter(cmd, "@Telefono", DbType.AnsiString, medico.Telefono);
+                medico.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
 
             }
+            
             return medico;
         }
 
@@ -88,7 +90,7 @@ namespace mvcPet.Data
                 db.AddInParameter(cmd, "@Nombre", DbType.AnsiString, medico.Nombre);
                 db.AddInParameter(cmd, "@especialidad", DbType.AnsiString, medico.Especialidad);
 
-                db.AddInParameter(cmd, "@FechaNacimiento", DbType.DateTime, medico.FechaNacimiento.Date); // Con .Date me quedo solamente con la fecha sil la hora.
+                db.AddInParameter(cmd, "@FechaNacimiento", DbType.Date, medico.FechaNacimiento.Date.ToString("yyyy-MM-dd"));
                 db.AddInParameter(cmd, "@Email", DbType.AnsiString, medico.Email);
                 db.AddInParameter(cmd, "@Telefono", DbType.AnsiString, medico.Telefono);
 
@@ -118,6 +120,7 @@ namespace mvcPet.Data
             medico.Nombre = GetDataValue<string>(dr, "Nombre");
             medico.Especialidad = GetDataValue<string>(dr, "Especialidad");
             medico.FechaNacimiento = GetDataValue<DateTime>(dr, "FechaNacimiento");
+            
             medico.Email = GetDataValue<string>(dr, "Email");
             medico.Telefono = GetDataValue<string>(dr, "Telefono");
             return medico;

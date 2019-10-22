@@ -19,14 +19,15 @@ namespace mvcPet.Data
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
-                cliente.Id = Convert.ToInt32(db.ExecuteScalar(cmd));                
+                            
                 db.AddInParameter(cmd, "@Apellido", DbType.AnsiString, cliente.Apellido);
                 db.AddInParameter(cmd, "@Nombre", DbType.AnsiString, cliente.Nombre);               
                 db.AddInParameter(cmd, "@Email", DbType.AnsiString, cliente.Email);
                 db.AddInParameter(cmd, "@Telefono", DbType.AnsiString, cliente.Telefono);
                 db.AddInParameter(cmd, "@Url", DbType.AnsiString, cliente.Url);
-                db.AddInParameter(cmd, "@FechaNacimiento", DbType.DateTime, cliente.FechaNacimiento);
+                db.AddInParameter(cmd, "@FechaNacimiento", DbType.Date, cliente.FechaNacimiento.Date.ToString("yyyy-MM-dd"));
                 db.AddInParameter(cmd, "@Domicilio", DbType.AnsiString, cliente.Domicilio);
+                cliente.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
             }
             return cliente;
         }
@@ -84,7 +85,7 @@ namespace mvcPet.Data
                 db.AddInParameter(cmd, "@Email", DbType.AnsiString, cliente.Email);
                 db.AddInParameter(cmd, "@Telefono", DbType.AnsiString, cliente.Telefono);
                 db.AddInParameter(cmd, "@Url", DbType.AnsiString, cliente.Url);
-                db.AddInParameter(cmd, "@FechaNacimiento", DbType.DateTime, cliente.FechaNacimiento);
+                db.AddInParameter(cmd, "@FechaNacimiento", DbType.Date, cliente.FechaNacimiento);
                 db.AddInParameter(cmd, "@Domicilio", DbType.AnsiString, cliente.Domicilio);
 
                 db.ExecuteNonQuery(cmd);
@@ -114,6 +115,37 @@ namespace mvcPet.Data
             cliente.Url = GetDataValue<string>(dr, "Url");
             cliente.FechaNacimiento = GetDataValue<DateTime>(dr, "FechaNacimiento");
             cliente.Domicilio = GetDataValue<string>(dr, "Domicilio");
+            return cliente;
+        }
+
+
+        //  Devuelve una lista de clientes para ser utilizada en una lista desplegable.
+        public List<ListaClientes> CreateListClient()
+        {
+            const string SQL_STATEMENT = "SELECT [Id], [Apellido], [Nombre] FROM Cliente";
+
+            List<ListaClientes> lista = new List<ListaClientes>();
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    while (dr.Read())
+                    {
+                        ListaClientes cliente = LoadClienteList(dr);
+                        lista.Add(cliente);
+                    }
+                }
+            }
+            return lista;
+        }
+
+        private ListaClientes LoadClienteList(IDataReader dr)
+        {
+            ListaClientes cliente = new ListaClientes();
+            cliente.Id = GetDataValue<int>(dr, "Id");
+            cliente.NApellido = GetDataValue<string>(dr, "Nombre") + " " + GetDataValue<string>(dr, "Apellido");
+
             return cliente;
         }
     }

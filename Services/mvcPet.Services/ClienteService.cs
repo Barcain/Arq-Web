@@ -17,12 +17,17 @@ namespace mvcPet.Services
             return bc.Agregar(cliente);
         }
 
-        public List<Cliente> ListarTodos()
+        public List<Cliente> ListarTodos() 
         {
             var bc = new ClienteComponent();
             return bc.ListarTodos();
         }
 
+        public List<ListaClientes> CrearListaClientes()
+        {
+            var bc = new ClienteComponent();
+            return bc.CrearListaClientes();
+        }
 
         public void Eliminar(Cliente model)
         {

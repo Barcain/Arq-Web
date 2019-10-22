@@ -13,8 +13,7 @@ namespace mvcPet.Entities
         
         [DisplayName("Id")]
         public int Id { get; set; }
-
-        
+                
         [DisplayName("Nombre")]
         public string Nombre { get; set; }
     }

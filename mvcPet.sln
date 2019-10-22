@@ -27,6 +27,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mvcPet.Services", "Services
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mvcPet.UI.Web", "Presentation\mvcPet.UI.Web\mvcPet.UI.Web.csproj", "{425802F1-F405-4569-B97B-5E674442FE98}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logging", "Logging", "{A7CD2832-C293-4598-BD6A-F0C3F3927195}"
+	ProjectSection(SolutionItems) = preProject
+		Services\Logging\ILoggingService.cs = Services\Logging\ILoggingService.cs
+		Services\Logging\LogEntry.cs = Services\Logging\LogEntry.cs
+		Services\Logging\LoggingService.cs = Services\Logging\LoggingService.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,5 +80,6 @@ Global
 		{3D65F06D-4C85-4400-A392-71625BE6C676} = {406B5CC0-36BE-4261-BAC3-FCAA84919E1A}
 		{D3AEB552-F847-4DB6-9811-3E6F74C98BF7} = {406B5CC0-36BE-4261-BAC3-FCAA84919E1A}
 		{425802F1-F405-4569-B97B-5E674442FE98} = {F14340C4-3CC7-4370-A492-8DD5414D47A6}
+		{A7CD2832-C293-4598-BD6A-F0C3F3927195} = {406B5CC0-36BE-4261-BAC3-FCAA84919E1A}
 	EndGlobalSection
 EndGlobal

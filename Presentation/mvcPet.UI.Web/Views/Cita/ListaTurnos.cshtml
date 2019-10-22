@@ -1,0 +1,67 @@
+﻿@model IEnumerable<mvcPet.Entities.ListaTurnos>
+
+<h2 class="text-center">Turnos (@ViewBag.Fech)</h2>
+<p>
+    @Html.ActionLink("Nuevo Turno", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<br />
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hora)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NMedico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NPaciente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NSala)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NServicio)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hora)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NMedico)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NPaciente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NSala)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NServicio)
+                </td>
+
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Acciones <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Editar", "Edit", new { id = item.Id })</li>
+                            <li>@Html.ActionLink("Detalles", "Detail", new { id = item.Id })</li>
+                            <li>@Html.ActionLink("Borrar", "Delete", new { id = item.Id })</li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>

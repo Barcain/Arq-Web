@@ -1,4 +1,5 @@
-﻿using mvcPet.Services;
+﻿using mvcPet.Entities;
+using mvcPet.Services;
 using mvcPet.Services.Contracts;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace mvcPet.UI.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ClienteController : Controller
     {
         // GET: Cliente
@@ -32,12 +34,13 @@ namespace mvcPet.UI.Web.Controllers
 
         // POST: Cliente/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Cliente model)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                IClienteService clienteService = new ClienteService();
+                clienteService.Agregar(model);
                 return RedirectToAction("Index");
             }
             catch
@@ -49,17 +52,20 @@ namespace mvcPet.UI.Web.Controllers
         // GET: Cliente/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            IClienteService clienteService = new ClienteService();
+            var cliente = clienteService.Find(id);
+            return View(cliente);
         }
 
         // POST: Cliente/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Cliente model)
         {
             try
             {
                 // TODO: Add update logic here
-
+                IClienteService clienteService = new ClienteService();
+                clienteService.Editar(model);
                 return RedirectToAction("Index");
             }
             catch
@@ -71,17 +77,20 @@ namespace mvcPet.UI.Web.Controllers
         // GET: Cliente/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            IClienteService clienteService = new ClienteService();
+            var cliente = clienteService.Find(id);
+            return View(cliente);
         }
 
         // POST: Cliente/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Cliente model)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                // TODO: Add insert logic here
+                IClienteService clienteService = new ClienteService();
+                clienteService.Eliminar(model);
                 return RedirectToAction("Index");
             }
             catch

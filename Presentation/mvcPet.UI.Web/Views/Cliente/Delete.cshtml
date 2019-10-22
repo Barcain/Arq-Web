@@ -1,0 +1,77 @@
+﻿@model mvcPet.Entities.Cliente
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 class="text-center">Borrar Médico</h2>
+<br />
+<div>
+    <dl class="dl-horizontal col-md-offset-4 col-md-8">
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Url)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Url)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaNacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaNacimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Domicilio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Domicilio)
+        </dd>
+       
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color col-md-offset-5 col-md-7">
+            <input type="submit" value="Borrar" class="btn btn-danger" />
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

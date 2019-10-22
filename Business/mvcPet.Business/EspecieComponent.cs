@@ -25,6 +25,15 @@ namespace mvcPet.Business
 
         }
 
+        public List<ListaEspecies> CrearListaEspecies()
+        {
+            List<ListaEspecies> result = default(List<ListaEspecies>);
+            var especieDAC = new EspecieDAC();
+            result = especieDAC.CreateListSpecie();
+            return result;
+
+        }
+
         public void Eliminar(int id)
         {          
             var especieDAC = new EspecieDAC();

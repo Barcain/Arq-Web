@@ -31,7 +31,7 @@ namespace mvcPet.Data
 
         public List<Paciente> Read()
         {
-            const string SQL_STATEMENT = "SELECT [Id], [ClienteId], [Nombre], [FechaNacimiento], [EspecieId], [Observacion] FROM Paciente ";
+            const string SQL_STATEMENT = "SELECT P.[Id], P.[ClienteId], C.[Apellido] AS CApellido, C.[Nombre] AS CNombre, P.[Nombre], P.[FechaNacimiento], P.[EspecieId], E.[Nombre] AS ENombre, P.[Observacion] FROM Paciente P JOIN Cliente C ON P.[ClienteId] = C.[Id] JOIN Especie E ON P.[EspecieId] = E.[Id]";
 
             List<Paciente> result = new List<Paciente>();
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -51,7 +51,7 @@ namespace mvcPet.Data
 
         public Paciente ReadBy(int id)
         {
-            const string SQL_STATEMENT = "SELECT [Id], [ClienteId], [Nombre], [FechaNacimiento], [EspecieId], [Observacion] FROM Paciente WHERE [Id]=@Id ";
+            const string SQL_STATEMENT = "SELECT P.[Id], P.[ClienteId], C.[Apellido] AS CApellido, C.[Nombre] AS CNombre, P.[Nombre], P.[FechaNacimiento], P.[EspecieId], E.[Nombre] AS ENombre, P.[Observacion] FROM Paciente P JOIN Cliente C ON P.[ClienteId] = C.[Id] JOIN Especie E ON P.[EspecieId] = E.[Id] WHERE P.Id = @Id";
             Paciente paciente = null;
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -66,9 +66,10 @@ namespace mvcPet.Data
                     }
                 }
             }
-            return paciente;
+           return paciente;
         }
-
+         
+                
         public void Update(Paciente paciente)
         {
             const string SQL_STATEMENT = "UPDATE Paciente SET [ClienteId]= @ClienteId, [Nombre]= @Nombre, [FechaNacimiento]= @FechaNacimiento, [EspecieId]= @EspecieId, [FechaNacimiento]= @FechaNacimiento, [Observacion]= @Observacion WHERE [Id]= @Id ";
@@ -101,10 +102,42 @@ namespace mvcPet.Data
             Paciente paciente = new Paciente();
             paciente.Id = GetDataValue<int>(dr, "Id");
             paciente.ClienteId = GetDataValue<int>(dr, "ClienteId");
+            paciente.Cliente = GetDataValue<string>(dr, "CNombre") + " " + GetDataValue<string>(dr, "CApellido");
             paciente.Nombre = GetDataValue<string>(dr, "Nombre");
             paciente.FechaNacimiento = GetDataValue<DateTime>(dr, "FechaNacimiento");
             paciente.EspecieId = GetDataValue<int>(dr, "EspecieId");
+            paciente.ENombre = GetDataValue<string>(dr, "ENombre");
             paciente.Observacion = GetDataValue<string>(dr, "Observacion");
+            return paciente;
+        }
+
+        //  Devuelve una lista de pacientes para ser utilizada en una lista desplegable.
+        public List<ListaPacientes> CreateListPatient()
+        {
+            const string SQL_STATEMENT_2 = "SELECT [Id], [Nombre] FROM Paciente";
+
+            List<ListaPacientes> lista = new List<ListaPacientes>();
+            var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT_2))
+            {
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    while (dr.Read())
+                    {
+                        ListaPacientes especie = LoadEspecieList(dr);
+                        lista.Add(especie);
+                    }
+                }
+            }
+            return lista;
+        }
+
+        private ListaPacientes LoadEspecieList(IDataReader dr)
+        {
+            ListaPacientes paciente = new ListaPacientes();
+            paciente.Id = GetDataValue<int>(dr, "Id");
+            paciente.PNombre = GetDataValue<string>(dr, "Nombre");
+
             return paciente;
         }
     }

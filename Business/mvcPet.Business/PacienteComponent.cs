@@ -25,6 +25,15 @@ namespace mvcPet.Business
 
         }
 
+        public List<ListaPacientes> CrearListaPacientes()
+        {
+            List<ListaPacientes> result = default(List<ListaPacientes>);
+            var pacienteDAC = new PacienteDAC();
+            result = pacienteDAC.CreateListPatient();
+            return result;
+
+        }
+
         public void Eliminar(int id)
         {
             var pacienteDAC = new PacienteDAC();
@@ -46,5 +55,12 @@ namespace mvcPet.Business
             return pacienteDAC.ReadBy(id);
 
         }
+
+        public List<ListaClientes> CreateListClient()
+        {
+            var clienteDAC = new ClienteDAC();
+            return clienteDAC.CreateListClient();
+        }
     }
+
 }
