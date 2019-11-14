@@ -79,3 +79,8 @@ footer {
     margin: 2%;
     text-align: center;
 }
+
+#calendar {
+    max-width: 900px;
+    margin: 0 auto;
+  }

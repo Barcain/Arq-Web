@@ -6,15 +6,14 @@ using System.Text;
 using System.Data;
 using System.Data.Common;
 using Microsoft.Practices.EnterpriseLibrary.Data;
-using mvcPet.Entities;
 
-namespace mvcPet.Data
+namespace Libreria.Data
 {
-    public partial class ClienteDAC : DataAccessComponent, IRepository<Cliente>
+    public partial class LibreriaDAC : DataAccessComponent, IRepository<Libreria>
     {
-        public Cliente Create(Cliente cliente)
+        public Libro Create(Libro libro)
         {
-            const string SQL_STATEMENT = "INSERT INTO Cliente ([Apellido], [Nombre], [Email], [Telefono], [Url], [FechaNacimiento], [Domicilio]) VALUES(@Apellido, @Nombre, @Email, @Telefono, @Url, @FechaNacimiento, @Domicilio); SELECT SCOPE_IDENTITY();";
+            const string SQL_STATEMENT = "INSERT INTO Libro ([Titulo], [Nombre], [Email], [Telefono], [Url], [FechaNacimiento], [Domicilio]) VALUES(@Apellido, @Nombre, @Email, @Telefono, @Url, @FechaNacimiento, @Domicilio); SELECT SCOPE_IDENTITY();";
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
@@ -32,11 +31,11 @@ namespace mvcPet.Data
             return cliente;
         }
 
-        public List<Cliente> Read()
+        public List<Libro> Read()
         {
-            const string SQL_STATEMENT = "SELECT [Id], [Apellido], [Nombre], [Email], [Telefono], [Url], [FechaNacimiento], [Domicilio] FROM Cliente ";
+            const string SQL_STATEMENT = "SELECT [Id], [Titulo], [Editorial], [AnioPublicacion], [Idioma], [Genero], [Observacion] FROM Libro ";
 
-            List<Cliente> result = new List<Cliente>();
+            List<Libro> result = new List<Libro>();
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
@@ -44,8 +43,8 @@ namespace mvcPet.Data
                 {
                     while (dr.Read())
                     {
-                        Cliente cliente = LoadCliente(dr);
-                        result.Add(cliente);
+                        Libro libro = LoadLibro(dr);
+                        result.Add(libro);
                     }
                 }
             }
@@ -103,19 +102,20 @@ namespace mvcPet.Data
             }
         }
 
-        private Cliente LoadCliente(IDataReader dr)
+        //  Este ya está listo
+        private Libro LoadLibro(IDataReader dr)
         {
-            Cliente cliente = new Cliente();
+            Libro libro = new Libro();
 
-            cliente.Id = GetDataValue<int>(dr, "Id");
-            cliente.Apellido = GetDataValue<string>(dr, "Apellido");
-            cliente.Nombre = GetDataValue<string>(dr, "Nombre");
-            cliente.Email = GetDataValue<string>(dr, "Email");
-            cliente.Telefono = GetDataValue<string>(dr, "Telefono");
-            cliente.Url = GetDataValue<string>(dr, "Url");
-            cliente.FechaNacimiento = GetDataValue<DateTime>(dr, "FechaNacimiento");
-            cliente.Domicilio = GetDataValue<string>(dr, "Domicilio");
-            return cliente;
+            libro.Id = GetDataValue<int>(dr, "Id");
+            libro.Titulo = GetDataValue<string>(dr, "Titulo");
+            libro.Editorial = GetDataValue<int>(dr, "Editorial");
+            libro.AnioPublicacion = GetDataValue<DateTime>(dr, "AnioPublicacion");
+            libro.Idioma = GetDataValue<int>(dr, "Idioma");
+            libro.Genero = GetDataValue<int>(dr, "Genero");
+            libro.Observacion = GetDataValue<string>(dr, "Observacion");
+            
+            return libro;
         }
 
 

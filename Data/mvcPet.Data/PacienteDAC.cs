@@ -72,17 +72,18 @@ namespace mvcPet.Data
                 
         public void Update(Paciente paciente)
         {
-            const string SQL_STATEMENT = "UPDATE Paciente SET [ClienteId]= @ClienteId, [Nombre]= @Nombre, [FechaNacimiento]= @FechaNacimiento, [EspecieId]= @EspecieId, [FechaNacimiento]= @FechaNacimiento, [Observacion]= @Observacion WHERE [Id]= @Id ";
+            const string SQL_STATEMENT = "UPDATE Paciente SET [ClienteId]= @ClienteId, [Nombre]= @Nombre, [FechaNacimiento]= @FechaNacimiento, [EspecieId]= @EspecieId, [Observacion]= @Observacion WHERE [Id]= @Id ";
 
             var db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
             using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
             {
+                db.AddInParameter(cmd, "@Id", DbType.Int32, paciente.Id);
                 db.AddInParameter(cmd, "@ClienteId", DbType.Int32, paciente.ClienteId);
                 db.AddInParameter(cmd, "@Nombre", DbType.AnsiString, paciente.Nombre);
                 db.AddInParameter(cmd, "@FechaNacimiento", DbType.DateTime, paciente.FechaNacimiento);
                 db.AddInParameter(cmd, "@EspecieId", DbType.Int32, paciente.EspecieId);
                 db.AddInParameter(cmd, "@Observacion", DbType.AnsiString, paciente.Observacion);
-                paciente.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
+                db.ExecuteNonQuery(cmd);
             }
         }
 

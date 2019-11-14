@@ -1,4 +1,9 @@
-﻿using mvcPet.Entities;
+﻿/******************************************************************************************************************
+ * 23/10/2019 - Darío Rodríguez: Para no tener que instalar TypeScript, está comentado en mvcPet.IU.Web.csproj el *
+ * <ItemGroup> que corresponde a los <TypeScriptCompile> de todos los archivos .ts                                *                                            *
+ * ****************************************************************************************************************/
+
+using mvcPet.Entities;
 using mvcPet.Services;
 using mvcPet.Services.Contracts;
 using System;

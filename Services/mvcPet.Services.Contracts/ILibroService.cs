@@ -2,27 +2,26 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ServiceModel;
-using mvcPet.Entities;
 
-namespace mvcPet.Services.Contracts
+namespace Libreria.Contracts
 {
     [ServiceContract]
-    public interface ISalaService
+    public interface ILibroService
     {
             [OperationContract]
-            Sala Agregar(Sala sala);
+            Libro Agregar(Libro model);
 
             [OperationContract]
-            List<Sala> ListarTodos();
+            List<Libro> ListarTodos();
+                   
+            [OperationContract]
+            void Eliminar(Libro model);
 
             [OperationContract]
-            void Eliminar(Sala model);
+            void Editar(Libro model);
 
             [OperationContract]
-            void Editar(Sala model);
-
-            [OperationContract]
-            Sala Find(int id);
+            Libro Find(int id);
     }
 
 

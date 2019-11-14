@@ -63,7 +63,8 @@ namespace mvcPet.UI.Web.Controllers
             
             IEspecieService especieService = new EspecieService();
             IClienteService clienteService = new ClienteService();
-                       
+            
+            //  Estas dos listas se mandan a la vista para elegir especie y cliente.           
             ViewBag.listaEsp = especieService.CrearListaEspecies();
             ViewBag.listaCli = clienteService.CrearListaClientes();
            
